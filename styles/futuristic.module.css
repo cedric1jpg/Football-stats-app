@@ -1,0 +1,35 @@
+:root{
+  --bg-1: #030417;
+  --bg-2: #07172a;
+  --neon: #00f0ff;
+  --accent: #7c3aed;
+  --glass: rgba(255,255,255,0.04);
+  --muted: rgba(255,255,255,0.45);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef8;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));}
+.stage{min-height:100vh;display:flex;flex-direction:column;gap:28px;padding:28px}
+.hud{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.03)}
+.brand{font-weight:700;letter-spacing:1px}
+.brand .pulse{color:var(--accent);text-shadow:0 0 8px rgba(124,58,237,0.6)}
+.credits{color:var(--muted);font-size:0.9rem}
+.hero{padding:40px;border-radius:16px;background:linear-gradient(180deg, rgba(124,58,237,0.07), rgba(0,0,0,0.06));box-shadow:0 12px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02);transform:rotateX(var(--mx, 0)) rotateY(var(--my, 0));transition:transform .12s ease}
+.hero h1{font-size:36px;margin:0 0 6px;color:var(--neon);text-shadow:0 4px 20px rgba(0,240,255,0.06)}
+.lead{color:var(--muted);margin:0 0 18px}
+.controls{display:flex;gap:10px}
+.btn{padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.04)}
+.btnPrimary{background:linear-gradient(90deg,var(--neon),var(--accent));color:#021226;font-weight:700;box-shadow:0 10px 30px rgba(3,233,255,0.08);border:none}
+.btnGhost{background:transparent;color:var(--neon);border:1px dashed rgba(0,240,255,0.12)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:10px}
+.card{padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));border:1px solid rgba(255,255,255,0.03);position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;inset:0;background:radial-gradient(600px 200px at -10% -20%, rgba(0,240,255,0.04), transparent 12%), radial-gradient(500px 180px at 120% 120%, rgba(124,58,237,0.03), transparent 12%);pointer-events:none}
+.cardBig{grid-column:span 2}
+.meter{font-weight:800;font-size:48px;color:var(--neon);text-shadow:0 6px 30px rgba(0,240,255,0.08)}
+.meterSmall{font-size:32px}
+.muted{color:var(--muted);font-size:0.95rem}
+.footer{align-self:center;color:var(--muted);font-size:0.9rem;margin-top:24px}
+
+@keyframes glow{0%{box-shadow:0 0 0px rgba(0,240,255,0)}50%{box-shadow:0 0 28px rgba(0,240,255,0.06)}100%{box-shadow:0 0 0px rgba(0,240,255,0)}}
+.brand{animation:glow 5s linear infinite}
+
+@media (max-width:700px){.hero h1{font-size:28px}.cardBig{grid-column:span 1}}

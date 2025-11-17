@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Football Stats — Arena</title>
+    <link rel="stylesheet" href="/futuristic.css" />
+  </head>
+  <body>
+    <div class="stage">
+      <nav class="hud">
+        <div class="brand">FOOTBALL <span class="pulse">ARENA</span></div>
+        <div class="credits">Player: <strong>Guest</strong></div>
+      </nav>
+
+      <header class="hero">
+        <h1>Enter the Arena</h1>
+        <p class="lead">A futuristic look at football teams — collect, strategize, and dominate.</p>
+
+        <div class="controls">
+          <a class="btn primary" href="/">Back to app</a>
+          <a class="btn ghost" href="#explore">Explore teams</a>
+        </div>
+      </header>
+
+      <main id="explore" class="cards">
+        <section class="card big">
+          <div class="meter">97</div>
+          <h3>Galactic FC</h3>
+          <p class="muted">Premier Galactic League</p>
+        </section>
+
+        <section class="card">
+          <div class="meter small">88</div>
+          <h4>Neo United</h4>
+          <p class="muted">Neo-Ligue</p>
+        </section>
+
+        <section class="card">
+          <div class="meter small">75</div>
+          <h4>Solar City</h4>
+          <p class="muted">Sun Conference</p>
+        </section>
+      </main>
+
+      <footer class="footer">HUD • Live • Neon • v1.0</footer>
+    </div>
+    <script>
+      // small interaction: float effect on mouse
+      document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20
+        const y = (e.clientY / window.innerHeight - 0.5) * 20
+        document.documentElement.style.setProperty('--mx', x + 'deg')
+        document.documentElement.style.setProperty('--my', y + 'deg')
+      })
+    </script>
+  </body>
+</html>
