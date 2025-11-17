@@ -44,6 +44,11 @@
 .btnPrimary{transition:transform 180ms ease, box-shadow 180ms ease}
 .btnPrimary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(3,233,255,0.08)}
 
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+	.stage::before, .hero h1, .card, .brand { animation: none !important; transition: none !important; }
+}
+
 
 @keyframes glow{0%{box-shadow:0 0 0px rgba(0,240,255,0)}50%{box-shadow:0 0 28px rgba(0,240,255,0.06)}100%{box-shadow:0 0 0px rgba(0,240,255,0)}}
 .brand{animation:glow 5s linear infinite}

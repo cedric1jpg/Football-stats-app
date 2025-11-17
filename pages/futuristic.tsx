@@ -3,22 +3,30 @@ import Head from 'next/head'
 import styles from '../styles/futuristic.module.css'
 import FuturisticCard from '../components/FuturisticCard'
 
-type Team = { id: number; name: string; league: string }
+type Team = { id: number; name: string; league: string; rating?: number }
 
 export default function Futuristic() {
   const [teams, setTeams] = useState<Team[]>([])
+  const [loadMs, setLoadMs] = useState<number | null>(null)
 
   useEffect(() => {
+    let t0 = performance.now()
     fetch('/api/teams')
       .then((r) => r.json())
-      .then(setTeams)
-      .catch(() => {
+      .then((data) => {
+        setTeams(data)
+        setLoadMs(Math.round(performance.now() - t0))
+        console.log('[futuristic] loaded teams in', Math.round(performance.now() - t0), 'ms')
+      })
+      .catch((err) => {
+        console.warn('[futuristic] teams fetch failed', err)
         // fallback: keep static samples
         setTeams([
-          { id: 1, name: 'Galactic FC', league: 'Premier Galactic League' },
-          { id: 2, name: 'Neo United', league: 'Neo-Ligue' },
-          { id: 3, name: 'Solar City', league: 'Sun Conference' },
+          { id: 1, name: 'Galactic FC', league: 'Premier Galactic League', rating: 97 },
+          { id: 2, name: 'Neo United', league: 'Neo-Ligue', rating: 88 },
+          { id: 3, name: 'Solar City', league: 'Sun Conference', rating: 75 },
         ])
+        setLoadMs(null)
       })
   }, [])
 
@@ -27,7 +35,6 @@ export default function Futuristic() {
       <Head>
         <title>Football Stats — Arena</title>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <link rel="stylesheet" href="/futuristic.css" />
       </Head>
 
       <div className={styles.stage}>
@@ -39,6 +46,9 @@ export default function Futuristic() {
         <header className={styles.hero}>
           <h1>Enter the Arena</h1>
           <p className={styles.lead}>A futuristic look at football teams — collect, strategize, and dominate.</p>
+          <div style={{ color: 'var(--muted)', fontSize: 12, marginTop: 8 }}>
+            {loadMs === null ? 'offline or slow — using fallback data' : loadMs ? `Loaded in ${loadMs}ms` : ''}
+          </div>
 
           <div className={styles.controls}>
             <a className={styles.btn + ' ' + styles.btnPrimary} href="/">Back to app</a>
