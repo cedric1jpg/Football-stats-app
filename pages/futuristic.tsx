@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/futuristic.module.css'
+import FuturisticCard from '../components/FuturisticCard'
+
+type Team = { id: number; name: string; league: string }
 
 export default function Futuristic() {
+  const [teams, setTeams] = useState<Team[]>([])
+
+  useEffect(() => {
+    fetch('/api/teams')
+      .then((r) => r.json())
+      .then(setTeams)
+      .catch(() => {
+        // fallback: keep static samples
+        setTeams([
+          { id: 1, name: 'Galactic FC', league: 'Premier Galactic League' },
+          { id: 2, name: 'Neo United', league: 'Neo-Ligue' },
+          { id: 3, name: 'Solar City', league: 'Sun Conference' },
+        ])
+      })
+  }, [])
+
   return (
     <>
       <Head>
@@ -28,23 +47,9 @@ export default function Futuristic() {
         </header>
 
         <main id="explore" className={styles.cards}>
-          <section className={styles.card + ' ' + styles.cardBig}>
-            <div className={styles.meter}>97</div>
-            <h3>Galactic FC</h3>
-            <p className={styles.muted}>Premier Galactic League</p>
-          </section>
-
-          <section className={styles.card}>
-            <div className={styles.meter + ' ' + styles.meterSmall}>88</div>
-            <h4>Neo United</h4>
-            <p className={styles.muted}>Neo-Ligue</p>
-          </section>
-
-          <section className={styles.card}>
-            <div className={styles.meter + ' ' + styles.meterSmall}>75</div>
-            <h4>Solar City</h4>
-            <p className={styles.muted}>Sun Conference</p>
-          </section>
+          {teams.map((t) => (
+            <FuturisticCard key={t.id} team={t} />
+          ))}
         </main>
 
         <footer className={styles.footer}>HUD • Live • Neon • v1.0</footer>

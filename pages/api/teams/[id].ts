@@ -7,5 +7,9 @@ const teams = [
 ]
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json(teams)
+  const { id } = req.query
+  const num = parseInt(Array.isArray(id) ? id[0] : (id || ''), 10)
+  const team = teams.find((t) => t.id === num)
+  if (!team) return res.status(404).json({ error: 'Team not found' })
+  res.status(200).json(team)
 }

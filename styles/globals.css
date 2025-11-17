@@ -27,6 +27,32 @@ body{
   gap:16px;
   margin-bottom:20px;
 }
+:root{
+  --bg-1: #030417;
+  --bg-2: #07172a;
+  --neon: #00f0ff;
+  --accent: #7c3aed;
+  --glass: rgba(255,255,255,0.04);
+  --muted: rgba(255,255,255,0.45);
+}
+
+html, body {
+  /* futuristic globals */
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+}
+:root{
+  --bg-1: #030417;
+  --bg-2: #07172a;
+  --neon: #00f0ff;
+  --accent: #7c3aed;
+  --glass: rgba(255,255,255,0.04);
+  --muted: rgba(255,255,255,0.45);
+}
+
+html, body {
+  /* futuristic globals */
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+}
 .logo{
   width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);
   display:flex;align-items:center;justify-content:center;font-weight:700;color:#021226
