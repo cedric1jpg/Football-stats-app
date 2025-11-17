@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/futuristic.module.css'
 import FuturisticCard from '../components/FuturisticCard'
 
-type Team = { id: number; name: string; league: string; rating?: number }
+type Team = { id: number; name: string; league: string; rating?: number; attack?: number; defense?: number }
 
 export default function Futuristic() {
   const [teams, setTeams] = useState<Team[]>([])
@@ -18,16 +18,16 @@ export default function Futuristic() {
         setLoadMs(Math.round(performance.now() - t0))
         console.log('[futuristic] loaded teams in', Math.round(performance.now() - t0), 'ms')
       })
-      .catch((err) => {
-        console.warn('[futuristic] teams fetch failed', err)
-        // fallback: keep static samples
-        setTeams([
-          { id: 1, name: 'Galactic FC', league: 'Premier Galactic League', rating: 97 },
-          { id: 2, name: 'Neo United', league: 'Neo-Ligue', rating: 88 },
-          { id: 3, name: 'Solar City', league: 'Sun Conference', rating: 75 },
-        ])
-        setLoadMs(null)
-      })
+        .catch((err) => {
+          console.warn('[futuristic] teams fetch failed', err)
+          // fallback: keep static samples including attack/defense so ratings compute
+          setTeams([
+            { id: 1, name: 'Galactic FC', league: 'Premier Galactic League', attack: 96, defense: 92 },
+            { id: 2, name: 'Neo United', league: 'Neo-Ligue', attack: 86, defense: 80 },
+            { id: 3, name: 'Solar City', league: 'Sun Conference', attack: 74, defense: 77 },
+          ])
+          setLoadMs(null)
+        })
   }, [])
 
   return (

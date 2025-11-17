@@ -35,7 +35,7 @@ export default function TeamPage() {
         <div className="muted">{team.league}</div>
         <div style={{ display: 'flex', gap: 18, marginTop: 18 }}>
           <div>
-            <div style={{ fontSize: 36, fontWeight: 800 }}>{team.rating ?? '—'}</div>
+      <div style={{ fontSize: 36, fontWeight: 800 }}>{team.rating ?? Math.round(((team.attack ?? 75) * 0.6 + (team.defense ?? 75) * 0.4)) }</div>
             <div className="smallMuted">Overall rating</div>
           </div>
 
