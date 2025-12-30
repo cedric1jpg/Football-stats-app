@@ -13,7 +13,34 @@ import PeriodBanner from '../components/PeriodBanner'
 import Link from 'next/link'
 import { Team } from '../types'
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const fetcher = async (url: string) => {
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+
+    // If the API returns a very small example array (older exported build),
+    // fall back to the shipped static `teams.json` in `public/` which is
+    // included in static exports and guaranteed to be present.
+    const maybeArray = Array.isArray(data) ? data : (data && data.teams) || []
+    if (Array.isArray(maybeArray) && maybeArray.length > 0 && maybeArray.length <= 5) {
+      try {
+        const fallbackRes = await fetch('/teams.json')
+        if (fallbackRes.ok) return { source: 'static', teams: await fallbackRes.json(), totalCount: (await fallbackRes.json()).length }
+      } catch (e) {
+        // ignore and return API response
+      }
+    }
+
+    return data
+  } catch (e) {
+    // If the API call fails entirely (serverless disabled), try static teams.json
+    try {
+      const fallbackRes = await fetch('/teams.json')
+      if (fallbackRes.ok) return { source: 'static', teams: await fallbackRes.json(), totalCount: (await fallbackRes.json()).length }
+    } catch (_) {}
+    throw e
+  }
+}
 
 export default function Home() {
   const searchParams = useSearchParams()

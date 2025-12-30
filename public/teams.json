@@ -1,0 +1,21 @@
+[
+  { "id": 11, "name": "Arsenal", "league": "Premier League", "country": "England" },
+  { "id": 281, "name": "Manchester City", "league": "Premier League", "country": "England" },
+  { "id": 3, "name": "Real Madrid", "league": "La Liga", "country": "Spain" },
+  { "id": 4, "name": "FC Barcelona", "league": "La Liga", "country": "Spain" },
+  { "id": 5, "name": "Bayern Munich", "league": "Bundesliga", "country": "Germany" },
+  { "id": 6, "name": "Paris Saint-Germain", "league": "Ligue 1", "country": "France" },
+  { "id": 7, "name": "Juventus", "league": "Serie A", "country": "Italy" },
+  { "id": 8, "name": "AC Milan", "league": "Serie A", "country": "Italy" },
+  { "id": 9, "name": "Inter Milan", "league": "Serie A", "country": "Italy" },
+  { "id": 10, "name": "Chelsea", "league": "Premier League", "country": "England" },
+  { "id": 12, "name": "Tottenham Hotspur", "league": "Premier League", "country": "England" },
+  { "id": 13, "name": "Liverpool", "league": "Premier League", "country": "England" },
+  { "id": 14, "name": "Atletico Madrid", "league": "La Liga", "country": "Spain" },
+  { "id": 15, "name": "Borussia Dortmund", "league": "Bundesliga", "country": "Germany" },
+  { "id": 16, "name": "Ajax", "league": "Eredivisie", "country": "Netherlands" },
+  { "id": 17, "name": "Porto", "league": "Primeira Liga", "country": "Portugal" },
+  { "id": 18, "name": "Benfica", "league": "Primeira Liga", "country": "Portugal" },
+  { "id": 19, "name": "Sevilla", "league": "La Liga", "country": "Spain" },
+  { "id": 20, "name": "RB Leipzig", "league": "Bundesliga", "country": "Germany" }
+]
