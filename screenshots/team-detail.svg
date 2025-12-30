@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#061827"/>
+  <text x="48" y="64" fill="#7ef0d8" font-family="Segoe UI, Roboto" font-size="26">Team Detail — Arsenal</text>
+  <g transform="translate(48,120)">
+    <!-- left column: team card -->
+    <rect x="0" y="0" width="420" height="500" rx="10" fill="#071a2a" stroke="#08354a" />
+    <text x="28" y="48" fill="#e8fff8" font-size="20">Arsenal</text>
+    <text x="28" y="84" fill="#9ff2e9" font-size="14">Points: 86 • Played: 38 • GF: 89 • GA: 36</text>
+
+    <!-- right column: players table -->
+    <rect x="460" y="0" width="680" height="500" rx="10" fill="#051722" stroke="#08334a" />
+    <text x="496" y="40" fill="#cfeff1" font-size="18">Squad</text>
+
+    <!-- table headers -->
+    <g transform="translate(496,70)" fill="#9ff2e9" font-size="14">
+      <text x="0" y="0">#</text>
+      <text x="40" y="0">Name</text>
+      <text x="340" y="0">Pos</text>
+      <text x="420" y="0">Age</text>
+    </g>
+
+    <!-- sample rows -->
+    <g transform="translate(496,100)" fill="#d8f8f0" font-size="13">
+      <text x="0" y="0">1</text>
+      <text x="40" y="0">Aaron Ramsdale</text>
+      <text x="340" y="0">GK</text>
+      <text x="420" y="0">25</text>
+
+      <text x="0" y="28">7</text>
+      <text x="40" y="28">Bukayo Saka</text>
+      <text x="340" y="28">RW</text>
+      <text x="420" y="28">22</text>
+    </g>
+  </g>
+</svg>
