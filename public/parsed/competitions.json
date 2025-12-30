@@ -1,0 +1,32 @@
+[
+  {
+    "competition_id": "GB1",
+    "competition_slug": "premier-league",
+    "competition_name": "Premier League"
+  },
+  {
+    "competition_id": "ES1",
+    "competition_slug": "la-liga",
+    "competition_name": "La Liga"
+  },
+  {
+    "competition_id": "IT1",
+    "competition_slug": "serie-a",
+    "competition_name": "Serie A"
+  },
+  {
+    "competition_id": "FR1",
+    "competition_slug": "ligue-1",
+    "competition_name": "Ligue 1"
+  },
+  {
+    "competition_id": "DE1",
+    "competition_slug": "bundesliga",
+    "competition_name": "Bundesliga"
+  },
+  {
+    "competition_id": "US1",
+    "competition_slug": "mls",
+    "competition_name": "MLS"
+  }
+]

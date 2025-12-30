@@ -1,0 +1,56 @@
+.stage{min-height:100vh;display:flex;flex-direction:column;gap:28px;padding:28px}
+.hud{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.03)}
+.brand{font-weight:700;letter-spacing:1px}
+.brand .pulse{color:var(--accent);text-shadow:0 0 8px rgba(124,58,237,0.6)}
+.credits{color:var(--muted);font-size:0.9rem}
+.hero{padding:40px;border-radius:16px;background:linear-gradient(180deg, rgba(124,58,237,0.07), rgba(0,0,0,0.06));box-shadow:0 12px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02);transform:rotateX(var(--mx, 0)) rotateY(var(--my, 0));transition:transform .12s ease}
+.hero h1{font-size:36px;margin:0 0 6px;color:var(--neon);text-shadow:0 4px 20px rgba(0,240,255,0.06)}
+.lead{color:var(--muted);margin:0 0 18px}
+.controls{display:flex;gap:10px}
+.btn{padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.04)}
+.btnPrimary{background:linear-gradient(90deg,var(--neon),var(--accent));color:#021226;font-weight:700;box-shadow:0 10px 30px rgba(3,233,255,0.08);border:none}
+.btnGhost{background:transparent;color:var(--neon);border:1px dashed rgba(0,240,255,0.12)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:10px}
+.card{padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));border:1px solid rgba(255,255,255,0.03);position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;inset:0;background:radial-gradient(600px 200px at -10% -20%, rgba(0,240,255,0.04), transparent 12%), radial-gradient(500px 180px at 120% 120%, rgba(124,58,237,0.03), transparent 12%);pointer-events:none}
+.cardBig{grid-column:span 2}
+.meter{font-weight:800;font-size:48px;color:var(--neon);text-shadow:0 6px 30px rgba(0,240,255,0.08)}
+.meterSmall{font-size:32px}
+.muted{color:var(--muted);font-size:0.95rem}
+.footer{align-self:center;color:var(--muted);font-size:0.9rem;margin-top:24px}
+.icon{color:var(--neon);width:48px;height:48px;flex:0 0 48px;transition:transform 260ms ease, filter 260ms ease}
+.smallMuted{font-size:0.8rem;color:var(--muted);margin-top:6px}
+
+/* Visual polish: hover, transitions, and background motion */
+.card{transition:transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease, filter 260ms ease}
+.card:hover{transform:translateY(-10px) rotateX(4deg);box-shadow:0 18px 40px rgba(2,6,23,0.6);filter:brightness(1.03)}
+.card:active{transform:translateY(-4px) rotateX(2deg)}
+
+/* soft glowing border on hover */
+.card:hover::before{content:'';position:absolute;inset:-2px;border-radius:14px;padding:1px;background:linear-gradient(90deg,var(--neon),var(--accent));opacity:0.12;pointer-events:none}
+.card:hover .icon{transform:scale(1.12) rotate(-6deg);filter:drop-shadow(0 8px 18px rgba(0,240,255,0.08))}
+
+/* subtle stage animated background (slow motion) */
+.stage{position:relative;overflow:hidden}
+.stage::before{content:'';position:absolute;inset:-20%;background:radial-gradient(600px 400px at 10% 10%, rgba(0,240,255,0.03), transparent 10%), radial-gradient(500px 300px at 90% 90%, rgba(124,58,237,0.02), transparent 10%);transform:translate3d(0,0,0);animation:drift 18s linear infinite;pointer-events:none}
+
+@keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(-6%,4%)}100%{transform:translate(0,0)}}
+
+/* hero headline glow pulse */
+.hero h1{animation:headlineGlow 3.8s ease-in-out infinite}
+@keyframes headlineGlow{0%{text-shadow:0 4px 20px rgba(0,240,255,0.04)}50%{text-shadow:0 12px 40px rgba(0,240,255,0.12)}100%{text-shadow:0 4px 20px rgba(0,240,255,0.04)}}
+
+/* button micro-interactions */
+.btnPrimary{transition:transform 180ms ease, box-shadow 180ms ease}
+.btnPrimary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(3,233,255,0.08)}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+	.stage::before, .hero h1, .card, .brand { animation: none !important; transition: none !important; }
+}
+
+
+@keyframes glow{0%{box-shadow:0 0 0px rgba(0,240,255,0)}50%{box-shadow:0 0 28px rgba(0,240,255,0.06)}100%{box-shadow:0 0 0px rgba(0,240,255,0)}}
+.brand{animation:glow 5s linear infinite}
+
+@media (max-width:700px){.hero h1{font-size:28px}.cardBig{grid-column:span 1}}

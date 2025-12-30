@@ -1,0 +1,21 @@
+{
+  "name": "Football Stats App",
+  "short_name": "FootStats",
+  "description": "Futuristic football stats app with live scores, fantasy tools, and global team data",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f23",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
