@@ -82,7 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Provide clearer debug information in the response so we can diagnose
       res.setHeader('x-source', 'parsed-missing')
       const debug = {
-        error: String((e && e.message) || e),
+        error: String((e as any)?.message ?? e),
         files: {
           clubs: fs.existsSync(clubsPath),
           players: fs.existsSync(playersPath),
