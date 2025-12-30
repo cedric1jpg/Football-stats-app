@@ -125,7 +125,7 @@ export default function TeamPage() {
               url={`${typeof window !== 'undefined' ? window.location.origin : ''}/teams/${team.id}`}
               title={`${team.name} Stats`}
               description={`Check out ${team.name}'s stats: Rating ${team.rating}, Attack ${team.attack}, Defense ${team.defense}`}
-              screenshotRef={cardRef}
+              screenshotRef={cardRef as unknown as import('react').RefObject<HTMLElement>}
             />
           </div>
 
