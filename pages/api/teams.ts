@@ -79,8 +79,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       competitions = JSON.parse(fs.readFileSync(competitionsPath, 'utf8'))
     } catch (e) {
       console.warn('Failed to load parsed data, returning fallback', e)
-      res.setHeader('x-source', 'fallback')
-      return res.status(200).json({ source: 'fallback', teams: FALLBACK_TEAMS, totalCount: FALLBACK_TEAMS.length })
+      // Provide clearer debug information in the response so we can diagnose
+      res.setHeader('x-source', 'parsed-missing')
+      const debug = {
+        error: String((e && e.message) || e),
+        files: {
+          clubs: fs.existsSync(clubsPath),
+          players: fs.existsSync(playersPath),
+          competitions: fs.existsSync(competitionsPath),
+        }
+      }
+      return res.status(200).json({ source: 'fallback', teams: FALLBACK_TEAMS, totalCount: FALLBACK_TEAMS.length, debug })
     }
 
     // Filter clubs by league and season
