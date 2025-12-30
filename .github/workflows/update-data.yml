@@ -1,0 +1,41 @@
+name: Update Football Data
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Clone football-datasets repo
+      run: |
+        git clone https://github.com/salimt/football-datasets.git temp-repo
+
+    - name: Copy CSV files
+      run: |
+        mkdir -p data
+        cp temp-repo/datalake/transfermarkt/raw/clubs.csv data/
+        cp temp-repo/datalake/transfermarkt/raw/players.csv data/
+        cp temp-repo/datalake/transfermarkt/raw/competitions.csv data/
+        cp temp-repo/datalake/transfermarkt/raw/seasons.csv data/
+
+    - name: Parse CSVs to JSON
+      run: |
+        npm ci
+        node scripts/parse-csvs.js
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/*.csv public/parsed/*.json
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update football data [automated]"
+        git push

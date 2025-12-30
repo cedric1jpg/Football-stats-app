@@ -5,6 +5,10 @@ import FuturisticCard from '../components/FuturisticCard'
 
 type Team = { id: number; name: string; league: string; rating?: number; attack?: number; defense?: number }
 
+export const getServerSideProps = async () => {
+  return { props: {} }
+}
+
 export default function Futuristic() {
   const [teams, setTeams] = useState<Team[]>([])
   const [loadMs, setLoadMs] = useState<number | null>(null)
@@ -14,20 +18,24 @@ export default function Futuristic() {
     fetch('/api/teams')
       .then((r) => r.json())
       .then((data) => {
-        setTeams(data)
+        // normalize response: /api/teams may return either an array or { source, teams }
+        if (Array.isArray(data)) setTeams(data)
+        else if (data && Array.isArray(data.teams)) setTeams(data.teams)
+        else setTeams([])
+
         setLoadMs(Math.round(performance.now() - t0))
         console.log('[futuristic] loaded teams in', Math.round(performance.now() - t0), 'ms')
       })
-        .catch((err) => {
-          console.warn('[futuristic] teams fetch failed', err)
-          // fallback: keep static samples including attack/defense so ratings compute
-          setTeams([
-            { id: 1, name: 'Galactic FC', league: 'Premier Galactic League', attack: 96, defense: 92 },
-            { id: 2, name: 'Neo United', league: 'Neo-Ligue', attack: 86, defense: 80 },
-            { id: 3, name: 'Solar City', league: 'Sun Conference', attack: 74, defense: 77 },
-          ])
-          setLoadMs(null)
-        })
+      .catch((err) => {
+        console.warn('[futuristic] teams fetch failed', err)
+        // fallback: keep static samples including attack/defense so ratings compute
+        setTeams([
+          { id: 1, name: 'Galactic FC', league: 'Premier Galactic League', attack: 96, defense: 92 },
+          { id: 2, name: 'Neo United', league: 'Neo-Ligue', attack: 86, defense: 80 },
+          { id: 3, name: 'Solar City', league: 'Sun Conference', attack: 74, defense: 77 },
+        ])
+        setLoadMs(null)
+      })
   }, [])
 
   return (
@@ -58,7 +66,7 @@ export default function Futuristic() {
 
         <main id="explore" className={styles.cards}>
           {teams.map((t) => (
-            <FuturisticCard key={t.id} team={t} />
+            <FuturisticCard key={t.id} team={t as any} />
           ))}
         </main>
 

@@ -83,3 +83,248 @@ html, body {
   .container{padding:12px;margin:16px}
   .header{gap:10px}
 }
+
+/* Glow utilities and form badge for futuristic cards */
+.glow-green{box-shadow:0 6px 24px rgba(56,189,248,0.14),0 0 12px rgba(34,197,94,0.18);border-radius:8px}
+.glow-yellow{box-shadow:0 6px 24px rgba(234,179,8,0.12),0 0 10px rgba(234,179,8,0.14);border-radius:8px}
+.glow-red{box-shadow:0 6px 24px rgba(239,68,68,0.12),0 0 10px rgba(239,68,68,0.14);border-radius:8px}
+.form-badge{background:linear-gradient(90deg,#7c3aed,#00f0ff);color:#021226;padding:4px 8px;border-radius:999px;font-weight:700;font-size:0.9rem}
+.teams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.spinner{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,0.06);border-top-color:var(--neon);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Pagination */
+.pagination { text-align: center; margin-top: 20px; }
+.pagination button {
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #00f0ff, #7c3aed);
+  color: #021226;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.pagination button:hover {
+  box-shadow: 0 6px 18px rgba(0, 240, 255, 0.3);
+}
+
+/* Progress bars */
+.progress-goals {
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.8));
+  height: 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+/* Data source badge */
+.data-source-badge {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.1));
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Light mode */
+.light {
+  --bg-1: #f8fafc;
+  --bg-2: #e2e8f0;
+  --neon: #7c3aed;
+  --accent: #06b6d4;
+  --glass: rgba(0,0,0,0.04);
+  --muted: rgba(0,0,0,0.45);
+  --text: #1e293b;
+}
+
+.light body {
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+}
+
+.light .card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(0,0,0,0.02));
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.light .team-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(0,0,0,0.01));
+  border:1px solid rgba(0,0,0,0.05);
+}
+
+/* Neon styles */
+.neon-img {
+  filter: drop-shadow(0 0 5px purple);
+}
+
+.neon-glow {
+  filter: drop-shadow(0 0 5px var(--neon));
+}
+
+.banner-hero {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+}
+
+/* Tab styles */
+.tab-neon {
+  border-bottom: 2px solid var(--neon);
+}
+
+.tab-neon button {
+  background: transparent;
+  border: none;
+  color: var(--neon);
+  font-weight: 600;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-neon button:hover {
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.tab-neon button[aria-selected="true"] {
+  background: var(--neon);
+  color: #021226;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+/* Formation pitch */
+.formation-pitch {
+  border: 2px solid var(--neon);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+/* Period banner */
+.period-banner {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(90deg, var(--accent), var(--neon));
+  color: #021226;
+  padding: 8px 16px;
+  text-align: center;
+  font-weight: 700;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Enhanced animations and effects */
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 240, 255, 0.15);
+}
+
+.team-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.2);
+}
+
+.glow-on-hover {
+  transition: all 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  transform: scale(1.02);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states */
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #00f0ff;
+  outline-offset: 2px;
+}
+
+/* Loading animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #00f0ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Neon border animation */
+@keyframes neon-border {
+  0%, 100% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 30px rgba(0, 240, 255, 0.6); }
+}
+
+.neon-border {
+  animation: neon-border 2s infinite;
+}
+
+/* Sparkle animation for high ratings */
+@keyframes sparkle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+.shimmer-load {
+  background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Hero wave animation */
+.hero-wave {
+  background: linear-gradient(135deg, #8B5CF6 0%, #00f0ff 50%, #7c3aed 100%);
+  background-size: 400% 400%;
+  animation: wave 6s ease infinite;
+}
+
+@keyframes wave {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
