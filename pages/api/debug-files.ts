@@ -15,11 +15,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           const stat = fs.statSync(p)
           result.files[n] = { size: stat.size, isFile: stat.isFile() }
         } catch (e) {
-          result.files[n] = { error: String((e && e.message) || e) }
+          result.files[n] = { error: String((e as any)?.message ?? e) }
         }
       })
     } catch (e) {
-      result.error = String((e && e.message) || e)
+      result.error = String((e as any)?.message ?? e)
     }
   }
 
